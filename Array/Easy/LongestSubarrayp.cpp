@@ -35,6 +35,7 @@ int main()
     */
 
     // Approach 2  -->
+    /*
     int left = 0;
     int right = 0;
     int maxLen = 0;
@@ -57,5 +58,32 @@ int main()
         }
     }
     cout<<maxLen;
+    */
+    
+
+    //Approach 3 --> Using Unordered Map
+    unordered_map<int,int> mpp;
+    vector<int>prefix_sum(n);
+    int maxlen = 0;
+    prefix_sum[0] = arr[0];
+    if(prefix_sum[0] == k)
+    {
+        maxlen = 1;
+    }
+    mpp.insert({prefix_sum[0],0});
+    for(int i=1;i<n;i++)
+    {
+        prefix_sum[i]=prefix_sum[i-1]+arr[i];
+        if(prefix_sum[i]==k)
+        {
+            maxlen= max(maxlen ,i+1);
+        }
+        else if(mpp.find(prefix_sum[i]-k) != mpp.end())
+        {
+            maxlen=max(maxlen , i-mpp[prefix_sum[i]-k]);
+        }
+        mpp.insert({prefix_sum[i], i});
+    }
+    cout<<maxlen;
     
 }
