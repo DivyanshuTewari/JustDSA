@@ -10,7 +10,9 @@ int main()
         cin>>arr[i];
     }
 
-    
+    //Brute Force method -- TC - O(n^2 logn)
+
+    /*
     set<vector<int>> st;
     unordered_map<int,int> mpp;
     for(int i=0;i<n;i++)
@@ -49,4 +51,57 @@ int main()
         }
         cout<<endl;
     }
+    */
+
+    //Optimal solution without using set
+    sort(arr.begin(),arr.end());
+    vector<vector<int>> result;
+    for(int i=0;i<n-3;i++)
+    {
+        int j = i+1;
+        int k = n-1;
+        if(i>0 && arr[i]==arr[i-1])
+        {
+            continue;
+        }
+
+        while(j<k)
+        {
+            int sum = arr[i]+arr[j]+arr[k];
+            if(sum == 0)
+            {
+                result.push_back({arr[i],arr[j],arr[k]});
+                
+
+            }
+            if(sum > 0)
+            {
+               while(j<k && arr[k]==arr[k-1])
+               {
+                k--;
+               }
+            }
+            if(sum < 0)
+            {
+                while(j<k && arr[j]==arr[j+1])
+                {
+                    j++;
+                }
+            }
+            j++;
+            k--;
+        }
+
+    }
+    for(int i=0;i<result.size();i++)
+    {
+        for(int j=0;j<result[result.size()-1].size();j++)
+        {
+            cout<<result[i][j]<<"       ";
+        }
+        cout<<endl;
+    }
+
+
+    return 0 ;
 }
