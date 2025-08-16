@@ -9,6 +9,8 @@ int main()
     {
         cin>>arr[i];
     }
+
+    // Same approa
     int maxlen = 0 ;
     unordered_map<int,int> mpp;
     int sum = 0;
@@ -21,7 +23,7 @@ int main()
         }
         else if(mpp.find(sum) != mpp.end())
         {
-            maxlen = max(maxlen, i-mpp[-sum]);
+            maxlen = max(maxlen, i-mpp[sum]);
         }
         mpp.insert({sum, i});
     }
