@@ -32,7 +32,7 @@ int main()
         }
         else
         {
-            right = arr[i][1];
+            right = max(right, arr[i][1]);
         }
 
     }
