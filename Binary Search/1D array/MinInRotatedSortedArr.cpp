@@ -14,6 +14,17 @@ int main()
     int mini = INT_MAX;
     while(low<=high)
     {
-        
+        int mid = (high+low)/2;
+        if(arr[mid]>arr[low])
+        {
+            mini = min (mini , arr[low]);
+            low = mid+1;
+        }
+        else{
+            mini=min(mini,arr[mid]);
+            high =mid-1;
+        }
     }
+    cout<<mini;
+    return 0;
 }
