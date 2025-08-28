@@ -64,19 +64,17 @@ int main()
     while(low<=high)
     {
         int mid = (low+high)/2;
-        if(count_Student(arr,mid) == student)
+        if(count_Student(arr,mid) <= student)
         {
             ans = mid ;
             high = mid - 1;
 
         }
-        else if(count_Student(arr,mid) > student)
+        else 
         {
             low = mid + 1;
         }
-        else{
-            high = mid - 1;
-        }
+        
     }
     cout<<ans<<endl;
     return 0;
