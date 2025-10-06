@@ -37,8 +37,14 @@ Node* insertTail(Node* head, int k)
     {
         return newNode;
     }
-    newNode->prev = head;
-    head->next = newNode;
+    Node* temp = head;
+    while(temp->next != nullptr)
+    {
+        temp = temp->next;
+    }
+
+    temp->next = newNode;
+    newNode->prev = temp;
     return head;
 }
 
@@ -207,7 +213,7 @@ int main()
         mover = temp;
     }
     
-    head = insertPos(head , 999 , 10);
+    head = insertTail(head , 999 );
 
     //Traverse
     mover = head;
