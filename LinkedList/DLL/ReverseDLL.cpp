@@ -13,6 +13,27 @@ class Node{
         prev = nullptr;
     }
 };
+Node* reverseDLL(Node* head)
+{
+    if(head == NULL || head->next == nullptr)
+    {
+        return head;
+    } 
+    Node* mover = head;
+    Node* temp = NULL;
+    while(mover != NULL)
+    {
+        temp = mover->prev;
+        mover->prev = mover->next;
+        mover->next = temp;
+        mover = mover->prev;
+    }
+    if(temp != NULL)
+    {
+        head = temp->prev;
+    }
+    return head;
+}
 int main()
 {
     vector<int> arr = {1,2,3,4,5,6,7,8,9,10};
@@ -25,7 +46,28 @@ int main()
         temp->prev = mover;
         mover = temp;
     }
+    // Approach 1 --> using stack
+    stack<int> st;
+    mover = head;
+    while(mover != NULL)
+    {
+        st.push(mover->data);
+        mover = mover->next;
+    }
+    mover = head;
+    while(mover != nullptr)
+    {
+        mover->data = st.top();
+        st.pop();
+        mover = mover->next;
+    }
 
+    //Approach 2 --> using links swap TC->O(n) SC->O(1)
+    head = reverseDLL(head);
+    
+
+
+    //Traverse
     mover = head;
     while(mover != nullptr)
     {
