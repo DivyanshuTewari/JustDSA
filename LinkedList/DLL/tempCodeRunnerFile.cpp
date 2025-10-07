@@ -21,21 +21,14 @@ Node* reverseDLL(Node* head)
     } 
     Node* mover = head;
     Node* temp = NULL;
-    
     // if we take (temp = mover->next)
     while(mover != NULL)
     {
         temp = mover->next;
         mover->next = mover->prev;
         mover->prev = temp;
-        if(temp == NULL)
-        {
-            head = mover;
-        }
         mover = temp;
     }
-
-    // // if we take (temp = mover->prev)
     // while(mover != NULL)
     // {
     //     temp = mover->prev;
@@ -43,10 +36,10 @@ Node* reverseDLL(Node* head)
     //     mover->next = temp;
     //     mover = mover->prev;
     // }
-    // if(temp != NULL)
-    // {
-    //     head = temp->prev;
-    // }
+    if(temp != NULL)
+    {
+        head = temp->prev;
+    }
     return head;
 }
 int main()
