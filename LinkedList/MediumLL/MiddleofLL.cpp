@@ -15,7 +15,11 @@ class Node{
 
 Node* middleLLa1(Node* head)
 {
-    int count = 0;
+    if(head == NULL || head->next == nullptr)
+    {
+        return head;
+    }
+    int count = 0; 
     Node* mover = head;
     while(mover != NULL)
     {
